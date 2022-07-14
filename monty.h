@@ -12,12 +12,10 @@
 #include <limits.h>
 #include <ctype.h>
 
-/* macros */
-#define UNUSED(x) void(x)
+#define UNUSED(x) (void)(x)
 #define TRUE 1
 #define FALSE 0
 #define DELIMS "\n \t\r"
-
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -25,7 +23,7 @@
  * @next: points to the next element of the stack (or queue)
  *
  * Description: doubly linked list node structure
- * for stack, queues, LIFO, FIFO
+ * for stack, queues, LIFO, FIFO Holberton project
  */
 typedef struct stack_s
 {
@@ -35,12 +33,12 @@ typedef struct stack_s
 } stack_t;
 
 /**
- * struct instruction_s - opcode and its function
+ * struct instruction_s - opcoode and its function
  * @opcode: the opcode
  * @f: function to handle the opcode
  *
  * Description: opcode and its function
- * for stack, queues, LIFO, FIFO
+ * for stack, queues, LIFO, FIFO Holberton project
  */
 typedef struct instruction_s
 {
@@ -59,35 +57,41 @@ typedef struct glob_s
 	instruction_t **ops;
 } glob_t;
 
+extern glob_t glob;
 
-/* operation_1 */
+/* monty.c */
+void stack_init(stack_t **head);
+void free_all(void);
+
+/* extra1.c */
+int process_file(char *filename, stack_t **stack);
+
+/* extra2.c */
+void delegate_op(stack_t **stack, char *op, unsigned int line_number);
+
+/* operation_1.c */
 void instruction_push(stack_t **stack, unsigned int line_number);
 void instruction_pop(stack_t **stack, unsigned int line_number);
 void instruction_pint(stack_t **stack, unsigned int line_number);
 void instruction_pall(stack_t **stack, unsigned int line_number);
 void instruction_swap(stack_t **stack, unsigned int line_number);
 
-/* operation_2 */
+/* operation_2.c */
 void instruction_add(stack_t **stack, unsigned int line_number);
 void instruction_nop(stack_t **stack, unsigned int line_number);
 void instruction_sub(stack_t **stack, unsigned int line_number);
 void instruction_div(stack_t **stack, unsigned int line_number);
 void instruction_mul(stack_t **stack, unsigned int line_number);
 
-/* operation_3 */
+/* operation_3.c */
 void instruction_mod(stack_t **stack, unsigned int line_number);
 void instruction_pchar(stack_t **stack, unsigned int line_number);
 void instruction_pstr(stack_t **stack, unsigned int line_number);
 void instruction_rotl(stack_t **stack, unsigned int line_number);
 void instruction_rotr(stack_t **stack, unsigned int line_number);
 
-/* extra_func */
-int process_file(char *filename, stack_t **stack);
-void delegate_op(stack_t **stack, char *op, unsigned int line_number);
+/* extra3.c */
+int is_leading_digit(char ascii_char);
 int _strtol(char *num_string, unsigned int line_number);
 
-/* monty */
-void stack_init(stack_t **head);
-void free_all(void);
-
-#endif /* MONTY_H */
+#endif /* MONTY */
